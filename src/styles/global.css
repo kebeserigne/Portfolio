@@ -1,0 +1,112 @@
+/* ============================================================
+   THÈME SOMBRE — Bleu nuit + accent ambre/jaune
+   ============================================================ */
+
+:root {
+  --bleu: #4a8fd4;          /* bleu clair lisible sur fond sombre */
+  --bleu-clair: #6ba8e0;
+  --ambre: #f5a623;         /* accent ambre/jaune */
+  --ambre-clair: #ffc04d;
+
+  --bg: #0f1825;            /* bleu nuit principal */
+  --bg-alt: #16212f;        /* surfaces légèrement plus claires */
+  --bg-carte: #1a2636;      /* cartes */
+  --texte: #eef3f9;
+  --texte-doux: #9fb0c3;
+  --bordure: #25344a;
+
+  --max-largeur: 1100px;
+  --rayon: 14px;
+  --transition: 0.25s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--texte);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: var(--max-largeur);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section { padding: 4rem 0; }
+.section-alt { background: var(--bg-alt); }
+
+h1, h2, h3 { line-height: 1.2; font-weight: 700; }
+
+.section-titre {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 0.5rem;
+  color: var(--bleu);
+}
+
+.section-sous-titre {
+  color: var(--texte-doux);
+  margin-bottom: 2.5rem;
+  max-width: 720px;
+}
+
+.section-titre::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  background: var(--ambre);
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.btn-plein {
+  background: linear-gradient(135deg, var(--bleu), var(--ambre));
+  color: #0f1825;
+}
+.btn-plein:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.25);
+}
+.btn-vide {
+  border-color: var(--bleu);
+  color: var(--bleu);
+}
+.btn-vide:hover {
+  background: var(--bleu);
+  color: #0f1825;
+  transform: translateY(-2px);
+}
+
+/* Étoiles de niveau (compétences) */
+.etoiles { display: inline-flex; gap: 2px; font-size: 1.1rem; }
+.etoiles .pleine { color: var(--ambre); }
+.etoiles .vide { color: var(--bordure); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: apparition 0.6s ease forwards;
+}
+@keyframes apparition {
+  to { opacity: 1; transform: translateY(0); }
+}

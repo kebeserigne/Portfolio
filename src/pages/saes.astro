@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { saes } from "../data/site.js";
+---
+
+<Layout titrePage="SAÉ — Portfolio">
+  <section>
+    <div class="container">
+      <h1 class="section-titre reveal">SAÉ</h1>
+      <p class="section-sous-titre reveal">
+        Mes Situations d'Apprentissage et d'Évaluation de BUT3 (S5 et S6),
+        reliées aux compétences du référentiel.
+      </p>
+      <div class="grille">
+        {saes.map((sae) => (
+          <article class="carte reveal">
+            {sae.image && <div class="img-zone"><img src={sae.image} alt={sae.titre} /></div>}
+            <div class="corps">
+              <div class="entete">
+                <span class="annee">{sae.annee}</span>
+                <span class="comp">{sae.competence}</span>
+              </div>
+              <h3 class="titre">{sae.titre}</h3>
+              <p class="desc">{sae.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .carte {
+    background: var(--bg-carte); border: 1px solid var(--bordure);
+    border-radius: var(--rayon); overflow: hidden;
+    transition: transform var(--transition), border-color var(--transition);
+  }
+  .carte:hover { transform: translateY(-4px); border-color: var(--ambre); }
+  .img-zone { height: 150px; background: var(--bg-alt); }
+  .img-zone img { width: 100%; height: 100%; object-fit: cover; }
+  .corps { padding: 1.5rem; }
+  .entete { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+  .annee {
+    font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem;
+    border-radius: 6px; background: var(--bleu); color: #0f1825;
+  }
+  .comp {
+    font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px;
+    background: rgba(245,166,35,0.18); color: var(--ambre-clair);
+  }
+  .titre { color: var(--bleu); font-size: 1.05rem; margin-bottom: 0.6rem; }
+  .desc { color: var(--texte-doux); font-size: 0.92rem; }
+</style>

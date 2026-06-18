@@ -1,0 +1,103 @@
+---
+import "../styles/global.css";
+import { profil } from "../data/site.js";
+
+const { titrePage = `${profil.nom} — Portfolio` } = Astro.props;
+const ici = Astro.url.pathname;
+
+const onglets = [
+  { nom: "Accueil", lien: "/" },
+  { nom: "À propos", lien: "/a-propos" },
+  { nom: "Compétences", lien: "/competences" },
+  { nom: "SAÉ", lien: "/saes" },
+  { nom: "Expériences pro", lien: "/experiences" },
+  { nom: "Projets", lien: "/projets" },
+  { nom: "Contact", lien: "/contact" },
+];
+
+const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={profil.accroche} />
+    <title>{titrePage}</title>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="/" class="logo">{profil.nom}<span>.</span></a>
+        <nav>
+          {onglets.map((o) => (
+            <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>{o.nom}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          <strong>{profil.nom}</strong>
+          <p>Étudiant BUT Science des Données</p>
+        </div>
+        <div class="footer-liens">
+          <a href={`mailto:${profil.email}`}>Email</a>
+          <a href={profil.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a href={profil.github} target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <p class="copyright">© {new Date().getFullYear()} {profil.nom}. Tous droits réservés.</p>
+    </footer>
+
+    <style>
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(15, 24, 37, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--bordure);
+      }
+      .nav-inner {
+        display: flex; align-items: center; justify-content: space-between;
+        height: 64px; gap: 1rem;
+      }
+      .logo { font-weight: 800; font-size: 1.2rem; color: var(--bleu); flex-shrink: 0; }
+      .logo span { color: var(--ambre); }
+      nav { display: flex; gap: 1.3rem; flex-wrap: wrap; justify-content: flex-end; }
+      nav a {
+        font-size: 0.92rem; color: var(--texte-doux);
+        transition: color var(--transition); position: relative; padding-bottom: 2px;
+      }
+      nav a:hover { color: var(--bleu); }
+      nav a.actif { color: var(--bleu); font-weight: 600; }
+      nav a.actif::after {
+        content: ""; position: absolute; left: 0; bottom: -2px;
+        width: 100%; height: 2px; background: var(--ambre); border-radius: 2px;
+      }
+      @media (max-width: 760px) {
+        .nav-inner { height: auto; padding: 0.8rem 0; flex-direction: column; }
+        nav { justify-content: center; gap: 0.9rem; }
+        nav a { font-size: 0.85rem; }
+      }
+
+      footer { border-top: 1px solid var(--bordure); padding: 2.5rem 0 1.5rem; margin-top: 2rem; background: var(--bg-alt); }
+      .footer-inner {
+        display: flex; justify-content: space-between; align-items: center;
+        flex-wrap: wrap; gap: 1rem;
+      }
+      .footer-inner strong { color: var(--bleu); font-size: 1.05rem; }
+      .footer-inner p { font-size: 0.88rem; color: var(--texte-doux); }
+      .footer-liens { display: flex; gap: 1.3rem; }
+      .footer-liens a { color: var(--texte-doux); font-size: 0.9rem; }
+      .footer-liens a:hover { color: var(--ambre); }
+      .copyright { text-align: center; font-size: 0.8rem; color: var(--texte-doux); margin-top: 1.5rem; }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { competences, techCategories } from "../data/site.js";
+
+function etoiles(n) {
+  return { pleines: n, vides: 5 - n };
+}
+---
+
+<Layout titrePage="Compétences — Portfolio">
+  <section>
+    <div class="container">
+      <h1 class="section-titre reveal">Compétences</h1>
+      <p class="section-sous-titre reveal">
+        Les 4 compétences du programme national BUT Science des Données (parcours
+        EMS). Pour chacune, mon niveau de maîtrise, mes axes de progression, et
+        les projets où je l'ai mise en œuvre.
+      </p>
+
+      <div class="grille">
+        {competences.map((c) => {
+          const e = etoiles(c.niveau);
+          return (
+            <article class="carte reveal">
+              <div class="entete">
+                <span class="num">{c.numero}</span>
+                <h3 class="titre">{c.titre}</h3>
+              </div>
+
+              <p class="desc">{c.description}</p>
+
+              <div class="etoiles">
+                {Array(e.pleines).fill(0).map(() => <span class="pleine">★</span>)}
+                {Array(e.vides).fill(0).map(() => <span class="vide">★</span>)}
+              </div>
+
+              <div class="rubrique">
+                <h4>Axes de progression</h4>
+                <ul>{c.amelioration.map((a) => <li>{a}</li>)}</ul>
+              </div>
+
+              <div class="rubrique">
+                <h4>Projets liés</h4>
+                <ul class="liens">{c.projets.map((p) => <li>{p}</li>)}</ul>
+              </div>
+
+              <div class="rubrique">
+                <h4>En entreprise</h4>
+                <ul>{c.entreprise.map((x) => <li>{x}</li>)}</ul>
+              </div>
+
+              <div class="techs">
+                {c.techs.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <h2 class="tech-titre reveal">Compétences techniques</h2>
+      <div class="tech-grille">
+        {techCategories.map((cat) => (
+          <div class="tech-carte reveal">
+            <h3>{cat.nom}</h3>
+            <div class="tech-items">
+              {cat.items.map((i) => <span class="tech-tag">{i}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .carte {
+    background: var(--bg-carte); border: 1px solid var(--bordure);
+    border-radius: var(--rayon); padding: 1.6rem;
+    transition: transform var(--transition), border-color var(--transition);
+  }
+  .carte:hover { transform: translateY(-4px); border-color: var(--ambre); }
+  .entete { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.8rem; }
+  .num {
+    flex-shrink: 0; width: 40px; height: 40px; display: grid; place-items: center;
+    border-radius: 10px; background: linear-gradient(135deg, var(--bleu), var(--ambre));
+    color: #0f1825; font-weight: 800; font-size: 0.9rem;
+  }
+  .titre { color: var(--bleu); font-size: 1.02rem; padding-top: 0.3rem; }
+  .desc { color: var(--texte-doux); font-size: 0.9rem; margin-bottom: 1rem; }
+  .etoiles { margin-bottom: 1.2rem; }
+  .rubrique { margin-bottom: 1rem; }
+  .rubrique h4 {
+    color: var(--ambre); font-size: 0.82rem; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 0.4rem; font-weight: 700;
+  }
+  .rubrique ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .rubrique li {
+    font-size: 0.86rem; padding-left: 1.1rem; position: relative; color: var(--texte-doux);
+  }
+  .rubrique li::before { content: "•"; position: absolute; left: 0.2rem; color: var(--bleu); }
+  .rubrique .liens li { color: var(--bleu-clair); }
+  .techs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--bordure); }
+  .tag {
+    font-size: 0.76rem; padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: rgba(245,166,35,0.15); color: var(--ambre-clair); font-weight: 600;
+  }
+  .tech-titre { color: var(--bleu); font-size: 1.5rem; margin: 3.5rem 0 1.5rem; }
+  .tech-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .tech-carte {
+    background: var(--bg-carte); border: 1px solid var(--bordure);
+    border-radius: var(--rayon); padding: 1.4rem;
+  }
+  .tech-carte h3 { color: var(--ambre); font-size: 1rem; margin-bottom: 1rem; }
+  .tech-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tech-tag {
+    font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 8px;
+    background: var(--bg-alt); border: 1px solid var(--bordure);
+    transition: border-color var(--transition);
+  }
+  .tech-tag:hover { border-color: var(--bleu); }
+</style>
