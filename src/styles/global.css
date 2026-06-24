@@ -393,3 +393,149 @@ a {
   filter: blur(110px);
   pointer-events: none;
 }
+/* Reflet animé sur les cartes */
+
+.carte {
+position: relative;
+overflow: hidden;
+}
+
+.carte::before {
+content: "";
+
+position: absolute;
+inset: 0;
+
+background:
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.12),
+transparent
+);
+
+transform: translateX(-150%);
+transition: transform 0.8s ease;
+
+pointer-events: none;
+}
+
+.carte:hover::before {
+transform: translateX(150%);
+}
+
+/* Amélioration du mode sombre */
+
+body {
+background:
+radial-gradient(
+circle at 1px 1px,
+rgba(255,255,255,0.03) 1px,
+transparent 0
+),
+var(--bg);
+
+background-size: 26px 26px;
+}
+
+/* Scrollbar moderne */
+
+::-webkit-scrollbar {
+width: 10px;
+}
+
+::-webkit-scrollbar-track {
+background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+background: linear-gradient(
+var(--bleu),
+var(--menthe)
+);
+
+border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+opacity: 0.8;
+}
+
+/* Sélection de texte */
+
+::selection {
+background: var(--menthe);
+color: white;
+}
+
+/* Images responsive */
+
+img {
+max-width: 100%;
+display: block;
+}
+
+/* Focus clavier accessible */
+
+a,
+button,
+input,
+textarea {
+outline: 2px solid var(--menthe);
+outline-offset: 3px;
+}
+
+/* Effet premium sur les titres */
+
+.section-titre {
+position: relative;
+}
+
+.section-titre:hover::after {
+width: 80px;
+transition: width .3s ease;
+}
+
+/* Animation douce au chargement */
+
+main {
+animation: fadePage .5s ease;
+}
+
+@keyframes fadePage {
+from {
+opacity: 0;
+transform: translateY(12px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Responsive grand écran */
+
+@media (min-width: 1400px) {
+.container {
+max-width: 1320px;
+}
+}
+
+/* Responsive téléphone */
+
+@media (max-width: 600px) {
+
+section {
+padding: 3rem 0;
+}
+
+.section-titre {
+font-size: 1.8rem;
+}
+
+.btn {
+width: 100%;
+justify-content: center;
+}
+}
