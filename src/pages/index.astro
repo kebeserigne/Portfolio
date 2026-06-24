@@ -23,6 +23,9 @@ const acces = [
       <h1 class="hero-nom reveal">{profil.nom}</h1>
       <p class="hero-titre reveal">{profil.titre}</p>
       <p class="hero-accroche reveal">{profil.accroche}</p>
+      <a href={profil.cv} download class="btn btn-plein hero-cv reveal">
+        📄 Télécharger mon CV
+      </a>
     </div>
   </section>
   <section class="acces">
@@ -72,6 +75,11 @@ const acces = [
     max-width: 600px;
     color: var(--texte-doux);
     font-size: 1.05rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-cv {
+    font-size: 1rem;
   }
 
   .acces { padding-top: 1rem; }
