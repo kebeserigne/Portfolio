@@ -1,5 +1,5 @@
 /* ============================================================
-   THÈME SOMBRE — Bleu nuit + accent ambre/jaune
+   THÈME DATA SCIENCE — Bleu profond + Menthe premium
    ============================================================ */
 
 :root {
@@ -16,10 +16,27 @@
   --texte: #0f172a;
   --texte-doux: #64748b;
   --bordure: #e5e7eb;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+  --ombre-menthe: rgba(45, 212, 191, 0.25);
+  --ombre: rgba(15, 23, 42, 0.08);
+
+  --max-largeur: 1200px;
+  --transition: 0.25s ease;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -29,16 +46,34 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
 .container {
   max-width: var(--max-largeur);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-section { padding: 4rem 0; }
-.section-alt { background: var(--bg-alt); }
+section {
+  padding: 4rem 0;
+}
 
-h1, h2, h3 { line-height: 1.2; font-weight: 700; }
+.section-alt {
+  background: var(--bg-alt);
+}
+
+/* ============================================================
+   TYPOGRAPHIE
+   ============================================================ */
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  font-weight: 700;
+}
 
 .section-titre {
   font-size: clamp(1.6rem, 4vw, 2.2rem);
@@ -57,53 +92,153 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; }
   display: block;
   width: 48px;
   height: 4px;
-  background: var(--ambre);
-  border-radius: 2px;
+  background: var(--menthe);
+  border-radius: 999px;
   margin-top: 0.6rem;
 }
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
 
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
+
+  padding: 0.75rem 1.4rem;
+
   border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
   border: 2px solid transparent;
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition),
+    color var(--transition);
 }
+
+/* Bouton principal */
+
 .btn-plein {
-  background: linear-gradient(135deg, var(--bleu), var(--ambre));
-  color: #0f1825;
+  background: linear-gradient(
+    135deg,
+    var(--bleu),
+    var(--menthe)
+  );
+
+  color: white;
 }
+
 .btn-plein:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.25);
+
+  box-shadow:
+    0 8px 24px var(--ombre-menthe);
 }
+
+/* Bouton secondaire */
+
 .btn-vide {
   border-color: var(--bleu);
   color: var(--bleu);
+  background: transparent;
 }
+
 .btn-vide:hover {
   background: var(--bleu);
-  color: #0f1825;
+  color: white;
   transform: translateY(-2px);
 }
 
-/* Étoiles de niveau (compétences) */
-.etoiles { display: inline-flex; gap: 2px; font-size: 1.1rem; }
-.etoiles .pleine { color: var(--ambre); }
-.etoiles .vide { color: var(--bordure); }
+/* ============================================================
+   CARTES
+   ============================================================ */
+
+.carte {
+  background: var(--bg-carte);
+  border: 1px solid var(--bordure);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 20px var(--ombre);
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.carte:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--menthe);
+
+  box-shadow:
+    0 10px 30px rgba(45, 212, 191, 0.15);
+}
+
+/* ============================================================
+   COMPÉTENCES
+   ============================================================ */
+
+.etoiles {
+  display: inline-flex;
+  gap: 2px;
+  font-size: 1.1rem;
+}
+
+.etoiles .pleine {
+  color: var(--menthe);
+}
+
+.etoiles .vide {
+  color: var(--bordure);
+}
+
+/* ============================================================
+   BADGES / TAGS
+   ============================================================ */
+
+.tag {
+  display: inline-block;
+
+  padding: 0.35rem 0.8rem;
+
+  border-radius: 999px;
+
+  background: rgba(45, 212, 191, 0.12);
+
+  color: #0f766e;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 
 .reveal {
   opacity: 0;
   transform: translateY(24px);
   animation: apparition 0.6s ease forwards;
 }
+
 @keyframes apparition {
-  to { opacity: 1; transform: translateY(0); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
