@@ -1,4 +1,5 @@
 
+---
 import "../styles/global.css";
 import { profil } from "../data/site.js";
 
@@ -6,20 +7,20 @@ const { titrePage = `${profil.nom} — Portfolio` } = Astro.props;
 const ici = Astro.url.pathname;
 
 const onglets = [
-{ nom: "Accueil", lien: "/" },
-{ nom: "À propos", lien: "/a-propos" },
-{ nom: "Compétences", lien: "/competences" },
-{ nom: "SAÉ", lien: "/saes" },
-{ nom: "Expériences pro", lien: "/experiences" },
-{ nom: "Projets", lien: "/projets" },
-{ nom: "Contact", lien: "/contact" },
+  { nom: "Accueil", lien: "/" },
+  { nom: "À propos", lien: "/a-propos" },
+  { nom: "Compétences", lien: "/competences" },
+  { nom: "SAÉ", lien: "/saes" },
+  { nom: "Expériences pro", lien: "/experiences" },
+  { nom: "Projets", lien: "/projets" },
+  { nom: "Contact", lien: "/contact" },
 ];
 
 const estActif = (lien) =>
-lien === "/" ? ici === "/" : ici.startsWith(lien);
+  lien === "/" ? ici === "/" : ici.startsWith(lien);
+---
 
 <!doctype html>
-
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -27,21 +28,19 @@ lien === "/" ? ici === "/" : ici.startsWith(lien);
     <meta name="description" content={profil.accroche} />
     <title>{titrePage}</title>
 
-```
-<script is:inline>
-  (function () {
-    const stocke = localStorage.getItem("theme");
+    <script is:inline>
+      (function () {
+        const stocke = localStorage.getItem("theme");
 
-    const theme =
-      stocke ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
+        const theme =
+          stocke ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
 
-    document.documentElement.setAttribute("data-theme", theme);
-  })();
-</script>
-
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
   </head>
 
   <body>
@@ -51,237 +50,234 @@ lien === "/" ? ici === "/" : ici.startsWith(lien);
           {profil.nom}<span>.</span>
         </a>
 
-    <nav>
-      {onglets.map((o) => (
-        <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>
-          {o.nom}
-        </a>
-      ))}
-    </nav>
+        <nav>
+          {onglets.map((o) => (
+            <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>
+              {o.nom}
+            </a>
+          ))}
+        </nav>
 
-    <button
-      class="theme-toggle"
-      type="button"
-      aria-label="Changer de thème"
-    >
-      <span class="icone-clair">☀️</span>
-      <span class="icone-sombre">🌙</span>
-    </button>
-  </div>
-</header>
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Changer de thème"
+        >
+          <span class="icone-clair">☀️</span>
+          <span class="icone-sombre">🌙</span>
+        </button>
+      </div>
+    </header>
 
-<main>
-  <slot />
-</main>
+    <main>
+      <slot />
+    </main>
 
-<footer>
-  <div class="container footer-inner">
-    <div>
-      <strong>{profil.nom}</strong>
-      <p>Étudiant BUT Science des Données</p>
-    </div>
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          <strong>{profil.nom}</strong>
+          <p>Étudiant BUT Science des Données</p>
+        </div>
 
-    <div class="footer-liens">
-      <a href={`mailto:${profil.email}`}>Email</a>
+        <div class="footer-liens">
+          <a href={`mailto:${profil.email}`}>Email</a>
 
-      <a
-        href={profil.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn
-      </a>
+          <a
+            href={profil.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
 
-      <a
-        href={profil.github}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub
-      </a>
-    </div>
-  </div>
+          <a
+            href={profil.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
 
-  <p class="copyright">
-    © {new Date().getFullYear()} {profil.nom}. Tous droits réservés.
-  </p>
-</footer>
+      <p class="copyright">
+        © {new Date().getFullYear()} {profil.nom}. Tous droits réservés.
+      </p>
+    </footer>
 
-<script is:inline>
-  const bouton = document.querySelector(".theme-toggle");
+    <script is:inline>
+      const bouton = document.querySelector(".theme-toggle");
 
-  bouton?.addEventListener("click", () => {
-    const actuel =
-      document.documentElement.getAttribute("data-theme") || "light";
+      bouton?.addEventListener("click", () => {
+        const actuel =
+          document.documentElement.getAttribute("data-theme") || "light";
 
-    const nouveau = actuel === "dark" ? "light" : "dark";
+        const nouveau = actuel === "dark" ? "light" : "dark";
 
-    document.documentElement.setAttribute("data-theme", nouveau);
-    localStorage.setItem("theme", nouveau);
-  });
-</script>
+        document.documentElement.setAttribute("data-theme", nouveau);
+        localStorage.setItem("theme", nouveau);
+      });
+    </script>
 
-<style>
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    <style>
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
 
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
 
-    border-bottom: 1px solid var(--bordure);
-  }
+        border-bottom: 1px solid var(--bordure);
+      }
 
-  :root[data-theme="dark"] .nav {
-    background: rgba(15, 23, 42, 0.75);
-  }
+      :root[data-theme="dark"] .nav {
+        background: rgba(15, 23, 42, 0.75);
+      }
 
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    height: 72px;
-    gap: 1rem;
-  }
+        height: 72px;
+        gap: 1rem;
+      }
 
-  .logo {
-    font-weight: 800;
-    font-size: 1.25rem;
-    color: var(--bleu);
-  }
+      .logo {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--bleu);
+      }
 
-  .logo span {
-    color: var(--menthe);
-  }
+      .logo span {
+        color: var(--menthe);
+      }
 
-  nav {
-    display: flex;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-  }
+      nav {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+      }
 
-  nav a {
-    color: var(--texte-doux);
-    font-size: 0.92rem;
-    position: relative;
-    transition: color 0.25s ease;
-  }
+      nav a {
+        color: var(--texte-doux);
+        font-size: 0.92rem;
+        position: relative;
+        transition: color 0.25s ease;
+      }
 
-  nav a:hover {
-    color: var(--bleu);
-  }
+      nav a:hover {
+        color: var(--bleu);
+      }
 
-  nav a.actif {
-    color: var(--bleu);
-    font-weight: 600;
-  }
+      nav a.actif {
+        color: var(--bleu);
+        font-weight: 600;
+      }
 
-  nav a.actif::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
+      nav a.actif::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
 
-    width: 100%;
-    height: 2px;
+        width: 100%;
+        height: 2px;
 
-    background: var(--menthe);
-    border-radius: 999px;
-  }
+        background: var(--menthe);
+        border-radius: 999px;
+      }
 
-  .theme-toggle {
-    cursor: pointer;
+      .theme-toggle {
+        cursor: pointer;
 
-    border: 1px solid var(--bordure);
-    background: var(--bg-carte);
+        border: 1px solid var(--bordure);
+        background: var(--bg-carte);
 
-    width: 44px;
-    height: 44px;
+        width: 44px;
+        height: 44px;
 
-    border-radius: 50%;
-    font-size: 1rem;
-  }
+        border-radius: 50%;
+        font-size: 1rem;
+      }
 
-  .icone-sombre {
-    display: none;
-  }
+      .icone-sombre {
+        display: none;
+      }
 
-  :root[data-theme="dark"] .icone-clair {
-    display: none;
-  }
+      :root[data-theme="dark"] .icone-clair {
+        display: none;
+      }
 
-  :root[data-theme="dark"] .icone-sombre {
-    display: inline;
-  }
+      :root[data-theme="dark"] .icone-sombre {
+        display: inline;
+      }
 
-  @media (max-width: 760px) {
-    .nav-inner {
-      flex-direction: column;
-      height: auto;
-      padding: 1rem 0;
-    }
+      @media (max-width: 760px) {
+        .nav-inner {
+          flex-direction: column;
+          height: auto;
+          padding: 1rem 0;
+        }
 
-    nav {
-      justify-content: center;
-      gap: 0.8rem;
-    }
+        nav {
+          justify-content: center;
+          gap: 0.8rem;
+        }
 
-    nav a {
-      font-size: 0.85rem;
-    }
-  }
+        nav a {
+          font-size: 0.85rem;
+        }
+      }
 
-  footer {
-    margin-top: 4rem;
-    padding: 2.5rem 0 1.5rem;
+      footer {
+        margin-top: 4rem;
+        padding: 2.5rem 0 1.5rem;
 
-    border-top: 1px solid var(--bordure);
-    background: var(--bg-alt);
-  }
+        border-top: 1px solid var(--bordure);
+        background: var(--bg-alt);
+      }
 
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
 
-  .footer-inner strong {
-    color: var(--bleu);
-  }
+      .footer-inner strong {
+        color: var(--bleu);
+      }
 
-  .footer-inner p {
-    color: var(--texte-doux);
-    font-size: 0.9rem;
-  }
+      .footer-inner p {
+        color: var(--texte-doux);
+        font-size: 0.9rem;
+      }
 
-  .footer-liens {
-    display: flex;
-    gap: 1.2rem;
-  }
+      .footer-liens {
+        display: flex;
+        gap: 1.2rem;
+      }
 
-  .footer-liens a {
-    color: var(--texte-doux);
-  }
+      .footer-liens a {
+        color: var(--texte-doux);
+      }
 
-  .footer-liens a:hover {
-    color: var(--menthe);
-  }
+      .footer-liens a:hover {
+        color: var(--menthe);
+      }
 
-  .copyright {
-    margin-top: 1.5rem;
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--texte-doux);
-  }
-</style>
-
+      .copyright {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--texte-doux);
+      }
+    </style>
   </body>
 </html>
-
-
