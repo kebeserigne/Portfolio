@@ -3,17 +3,19 @@
    ============================================================ */
 
 :root {
-  --bleu: #1f2a44;          /* bleu encre — titres, nav */
+  --bleu: #1f2a44;
   --bleu-clair: #2e3f66;
-  --ambre: #b46a55;         /* terracotta — accent boutons, tags, liens */
-  --ambre-clair: #c98070;
 
-  --bg: #f2efe8;            /* lin — fond principal */
-  --bg-alt: #ede9e0;        /* lin légèrement plus foncé — sections alternées */
-  --bg-carte: #ffffff;      /* cartes blanches sur fond lin */
-  --texte: #0b1320;         /* bleu nuit — texte principal */
-  --texte-doux: #c7b8a6;    /* sable — texte secondaire */
-  --bordure: #ddd8ce;       /* bordures douces */
+  --menthe: #4fd1c5;
+  --menthe-clair: #81e6d9;
+
+  --bg: #f2efe8;
+  --bg-alt: #ede9e0;
+  --bg-carte: #ffffff;
+
+  --texte: #0b1320;
+  --texte-doux: #6b7280;
+  --bordure: #ddd8ce;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
