@@ -1,4 +1,3 @@
-
 /* ============================================================
    THÈME DATA SCIENCE — Bleu profond + Menthe premium
    ============================================================ */
@@ -23,6 +22,124 @@
 
   --max-largeur: 1200px;
   --transition: 0.25s ease;
+}
+
+/* ============================================================
+   MODE SOMBRE
+   ============================================================ */
+
+:root[data-theme="dark"] {
+  --bleu: #2dd4bf;
+  --bleu-clair: #5eead4;
+  --menthe: #2dd4bf;
+  --menthe-clair: #99f6e4;
+
+  --bg: #0b1220;
+  --bg-alt: #0f172a;
+  --bg-carte: #131c2e;
+
+  --texte: #e2e8f0;
+  --texte-doux: #94a3b8;
+  --bordure: #1e293b;
+
+  --ombre-menthe: rgba(45, 212, 191, 0.35);
+  --ombre: rgba(0, 0, 0, 0.45);
+}
+
+/* transition douce au changement de thème, sans flash brutal */
+body,
+.carte,
+.acces-bouton,
+.btn {
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+/* bouton toggle thème (à placer dans la nav du Layout) */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  border: 1px solid var(--bordure);
+  background: var(--bg-carte);
+
+  font-size: 1.1rem;
+  cursor: pointer;
+
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--menthe);
+  transform: rotate(15deg);
+}
+
+/* ============================================================
+   BARRES DE COMPÉTENCES (animées au scroll)
+   ============================================================ */
+
+.barre-niveau {
+  width: 100%;
+  height: 8px;
+
+  border-radius: 999px;
+  background: var(--bordure);
+
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+
+.barre-niveau-remplissage {
+  height: 100%;
+  width: 0%; /* rempli en JS au scroll, jusqu'à data-niveau */
+
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--bleu), var(--menthe));
+
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   COMPTEURS ANIMÉS (chiffres clés)
+   ============================================================ */
+
+.stats-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+
+  max-width: 760px;
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+.stat {
+  padding: 1rem;
+}
+
+.stat-chiffre {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+
+  background: linear-gradient(135deg, var(--bleu), var(--menthe));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat-label {
+  color: var(--texte-doux);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
 }
 
 /* ============================================================
@@ -186,7 +303,7 @@ a {
 }
 
 /* ============================================================
-   COMPÉTENCES
+   COMPÉTENCES (étoiles — gardé si encore utilisé ailleurs)
    ============================================================ */
 
 .etoiles {
@@ -240,7 +357,7 @@ a {
 }
 
 /* ============================================================
-   HERO — VERSION PREMIUM (IMPORTANT)
+   HERO — VERSION PREMIUM
    ============================================================ */
 
 .hero {
@@ -249,44 +366,30 @@ a {
   padding: 5rem 0 3rem;
 }
 
-/* blob menthe */
 .hero::before {
   content: "";
-
   position: absolute;
   top: -180px;
   right: -180px;
-
   width: 420px;
   height: 420px;
-
   border-radius: 50%;
-
   background: var(--menthe);
   opacity: 0.12;
-
   filter: blur(90px);
-
   pointer-events: none;
 }
 
-/* blob bleu */
 .hero::after {
   content: "";
-
   position: absolute;
   bottom: -200px;
   left: -200px;
-
   width: 500px;
   height: 500px;
-
   border-radius: 50%;
-
   background: var(--bleu);
   opacity: 0.08;
-
   filter: blur(110px);
-
   pointer-events: none;
 }
