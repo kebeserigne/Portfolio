@@ -3,21 +3,20 @@
    ============================================================ */
 
 :root {
-  --bleu: #1f2a44;
-  --bleu-clair: #2e3f66;
+  --bleu: #172554;
+  --bleu-clair: #1e40af;
 
-  --menthe: #4fd1c5;
-  --menthe-clair: #81e6d9;
+  --menthe: #2dd4bf;
+  --menthe-clair: #99f6e4;
 
-  --bg: #f2efe8;
-  --bg-alt: #ede9e0;
+  --bg: #faf8f3;
+  --bg-alt: #f4f1ea;
   --bg-carte: #ffffff;
 
-  --texte: #0b1320;
-  --texte-doux: #6b7280;
-  --bordure: #ddd8ce;
+  --texte: #0f172a;
+  --texte-doux: #64748b;
+  --bordure: #e5e7eb;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
