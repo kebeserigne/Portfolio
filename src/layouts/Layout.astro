@@ -1,144 +1,289 @@
 ---
+
 import "../styles/global.css";
 import { profil } from "../data/site.js";
+
 const { titrePage = `${profil.nom} — Portfolio` } = Astro.props;
 const ici = Astro.url.pathname;
+
 const onglets = [
-  { nom: "Accueil", lien: "/" },
-  { nom: "À propos", lien: "/a-propos" },
-  { nom: "Compétences", lien: "/competences" },
-  { nom: "SAÉ", lien: "/saes" },
-  { nom: "Expériences pro", lien: "/experiences" },
-  { nom: "Projets", lien: "/projets" },
-  { nom: "Contact", lien: "/contact" },
+{ nom: "Accueil", lien: "/" },
+{ nom: "À propos", lien: "/a-propos" },
+{ nom: "Compétences", lien: "/competences" },
+{ nom: "SAÉ", lien: "/saes" },
+{ nom: "Expériences pro", lien: "/experiences" },
+{ nom: "Projets", lien: "/projets" },
+{ nom: "Contact", lien: "/contact" },
 ];
-const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
----
+
+## const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
+
 <!doctype html>
+
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={profil.accroche} />
     <title>{titrePage}</title>
-    <!-- Anti-flash : applique le thème AVANT le premier rendu visuel -->
-    <script is:inline>
-      (function () {
-        const stocke = localStorage.getItem("theme");
-        const theme =
-          stocke ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        document.documentElement.setAttribute("data-theme", theme);
-      })();
-    </script>
+
+```
+<script is:inline>
+  (function () {
+    const stocke = localStorage.getItem("theme");
+    const theme =
+      stocke ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+```
+
   </head>
+
   <body>
     <header class="nav">
       <div class="container nav-inner">
-        <a href="/" class="logo">{profil.nom}<span>.</span></a>
-        <nav>
-          {onglets.map((o) => (
-            <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>{o.nom}</a>
-          ))}
-        </nav>
-        <button class="theme-toggle" type="button" aria-label="Changer de thème" title="Changer de thème">
-          <span class="icone-clair">☀️</span>
-          <span class="icone-sombre">🌙</span>
-        </button>
-      </div>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <div class="container footer-inner">
-        <div>
-          <strong>{profil.nom}</strong>
-          <p>Étudiant BUT Science des Données</p>
-        </div>
-        <div class="footer-liens">
-          <a href={`mailto:${profil.email}`}>Email</a>
-          <a href={profil.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-          <a href={profil.github} target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-      <p class="copyright">© {new Date().getFullYear()} {profil.nom}. Tous droits réservés.</p>
-    </footer>
+        <a href="/" class="logo">
+          {profil.nom}<span>.</span>
+        </a>
 
-    <script src="/scripts/theme.js"></script>
+```
+    <nav>
+      {onglets.map((o) => (
+        <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>
+          {o.nom}
+        </a>
+      ))}
+    </nav>
 
-    <style>
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background: var(--bg-carte);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--bordure);
-      }
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 64px;
-        gap: 1rem;
-      }
-      .logo { font-weight: 800; font-size: 1.2rem; color: var(--bleu); flex-shrink: 0; }
-      .logo span { color: var(--menthe); }
-      nav { display: flex; gap: 1.3rem; flex-wrap: wrap; justify-content: flex-end; }
-      nav a {
-        font-size: 0.92rem;
-        color: var(--texte-doux);
-        transition: color var(--transition);
-        position: relative;
-        padding-bottom: 2px;
-      }
-      nav a:hover { color: var(--bleu); }
-      nav a.actif { color: var(--bleu); font-weight: 600; }
-      nav a.actif::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        width: 100%;
-        height: 2px;
-        background: var(--menthe);
-        border-radius: 2px;
-      }
+    <button
+      class="theme-toggle"
+      type="button"
+      aria-label="Changer de thème"
+    >
+      <span class="icone-clair">☀️</span>
+      <span class="icone-sombre">🌙</span>
+    </button>
+  </div>
+</header>
 
-      /* icônes du toggle : on affiche soleil en clair, lune en sombre */
-      .theme-toggle .icone-sombre { display: none; }
-      .theme-toggle .icone-clair { display: inline; }
-      :root[data-theme="dark"] .theme-toggle .icone-clair { display: none; }
-      :root[data-theme="dark"] .theme-toggle .icone-sombre { display: inline; }
+<main>
+  <slot />
+</main>
 
-      @media (max-width: 760px) {
-        .nav-inner { height: auto; padding: 0.8rem 0; flex-direction: column; }
-        nav { justify-content: center; gap: 0.9rem; }
-        nav a { font-size: 0.85rem; }
-      }
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>{profil.nom}</strong>
+      <p>Étudiant BUT Science des Données</p>
+    </div>
 
-      footer {
-        border-top: 1px solid var(--bordure);
-        padding: 2.5rem 0 1.5rem;
-        margin-top: 2rem;
-        background: var(--bg-alt);
-      }
-      .footer-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-      .footer-inner strong { color: var(--bleu); font-size: 1.05rem; }
-      .footer-inner p { font-size: 0.88rem; color: var(--texte-doux); }
-      .footer-liens { display: flex; gap: 1.3rem; }
-      .footer-liens a { color: var(--texte-doux); font-size: 0.9rem; }
-      .footer-liens a:hover { color: var(--menthe); }
-      .copyright { text-align: center; font-size: 0.8rem; color: var(--texte-doux); margin-top: 1.5rem; }
-    </style>
+    <div class="footer-liens">
+      <a href={`mailto:${profil.email}`}>Email</a>
+
+      <a
+        href={profil.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <a
+        href={profil.github}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <p class="copyright">
+    © {new Date().getFullYear()} {profil.nom}. Tous droits réservés.
+  </p>
+</footer>
+
+<script is:inline>
+  const bouton = document.querySelector(".theme-toggle");
+
+  bouton?.addEventListener("click", () => {
+    const actuel =
+      document.documentElement.getAttribute("data-theme") || "light";
+
+    const nouveau = actuel === "dark" ? "light" : "dark";
+
+    document.documentElement.setAttribute("data-theme", nouveau);
+    localStorage.setItem("theme", nouveau);
+  });
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid var(--bordure);
+  }
+
+  :root[data-theme="dark"] .nav {
+    background: rgba(15, 23, 42, 0.75);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 72px;
+    gap: 1rem;
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--bleu);
+  }
+
+  .logo span {
+    color: var(--menthe);
+  }
+
+  nav {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: var(--texte-doux);
+    font-size: 0.92rem;
+    position: relative;
+    transition: color .25s ease;
+  }
+
+  nav a:hover {
+    color: var(--bleu);
+  }
+
+  nav a.actif {
+    color: var(--bleu);
+    font-weight: 600;
+  }
+
+  nav a.actif::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--menthe);
+    border-radius: 999px;
+  }
+
+  .theme-toggle {
+    cursor: pointer;
+
+    border: 1px solid var(--bordure);
+    background: var(--bg-carte);
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+
+    font-size: 1rem;
+  }
+
+  .icone-sombre {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .icone-clair {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .icone-sombre {
+    display: inline;
+  }
+
+  @media (max-width: 760px) {
+    .nav-inner {
+      flex-direction: column;
+      height: auto;
+      padding: 1rem 0;
+    }
+
+    nav {
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+    }
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding: 2.5rem 0 1.5rem;
+
+    border-top: 1px solid var(--bordure);
+    background: var(--bg-alt);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-inner strong {
+    color: var(--bleu);
+  }
+
+  .footer-inner p {
+    color: var(--texte-doux);
+    font-size: 0.9rem;
+  }
+
+  .footer-liens {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  .footer-liens a {
+    color: var(--texte-doux);
+  }
+
+  .footer-liens a:hover {
+    color: var(--menthe);
+  }
+
+  .copyright {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--texte-doux);
+  }
+</style>
+```
+
   </body>
 </html>
+
