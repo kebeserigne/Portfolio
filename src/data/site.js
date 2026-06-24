@@ -10,7 +10,7 @@ export const profil = {
     "J'aime transformer des données complexes en outils clairs et utiles. En alternance chez LYSARC, je conçois des visualisations et des analyses statistiques pour la recherche clinique.",
   email: "serignemodoumaikebe@gmail.com",      
   linkedin: "https://www.linkedin.com/in/kebe-serigne/",
-  github: "https://github.com/ton-pseudo",  
+  github: "https://github.com/kebeserigne",  
   cv: "/cv.pdf",
   photo: "/photo.jpg", // mets ta photo dans public/photo.jpg
 };
