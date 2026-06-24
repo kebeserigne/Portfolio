@@ -3,14 +3,14 @@
 // ============================================================
 
 export const profil = {
-  nom: "Serigne",
+  nom: "Serigne KEBE",
   titre: "Étudiant BUT Science des Données — parcours EMS",
   sousTitre: "Programmeur Statisticien · Futur ingénieur Data & IA",
   accroche:
     "J'aime transformer des données complexes en outils clairs et utiles. En alternance chez LYSARC, je conçois des visualisations et des analyses statistiques pour la recherche clinique.",
-  email: "ton.email@exemple.com",        // <-- mets ton vrai mail
-  linkedin: "https://linkedin.com/in/ton-profil", // <-- ton URL LinkedIn
-  github: "https://github.com/ton-pseudo",        // <-- ton URL GitHub
+  email: "serignemodoumaikebe@gmail.com",      
+  linkedin: "linkedin.com/in/KEBE-Serigne",
+  github: "https://github.com/ton-pseudo",  
   cv: "/cv.pdf",
   photo: "/photo.jpg", // mets ta photo dans public/photo.jpg
 };
