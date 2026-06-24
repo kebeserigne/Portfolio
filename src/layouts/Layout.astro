@@ -16,7 +16,9 @@ const onglets = [
 { nom: "Contact", lien: "/contact" },
 ];
 
-const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
+const estActif = (lien) =>
+lien === "/" ? ici === "/" : ici.startsWith(lien);
+--------------------------------------------------
 
 <!doctype html>
 
@@ -31,6 +33,7 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
 <script is:inline>
   (function () {
     const stocke = localStorage.getItem("theme");
+
     const theme =
       stocke ||
       (window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -40,7 +43,7 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
     document.documentElement.setAttribute("data-theme", theme);
   })();
 </script>
-
+```
 
   </head>
 
@@ -51,7 +54,7 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
           {profil.nom}<span>.</span>
         </a>
 
-
+```
     <nav>
       {onglets.map((o) => (
         <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>
@@ -168,7 +171,7 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
     color: var(--texte-doux);
     font-size: 0.92rem;
     position: relative;
-    transition: color .25s ease;
+    transition: color 0.25s ease;
   }
 
   nav a:hover {
@@ -203,7 +206,6 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
     height: 44px;
 
     border-radius: 50%;
-
     font-size: 1rem;
   }
 
@@ -286,4 +288,5 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
 
   </body>
 </html>
+
 
