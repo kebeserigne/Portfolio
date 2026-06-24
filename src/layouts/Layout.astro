@@ -40,7 +40,7 @@ const onglets = [
     document.documentElement.setAttribute("data-theme", theme);
   })();
 </script>
-```
+
 
   </head>
 
@@ -51,7 +51,7 @@ const onglets = [
           {profil.nom}<span>.</span>
         </a>
 
-```
+
     <nav>
       {onglets.map((o) => (
         <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>
