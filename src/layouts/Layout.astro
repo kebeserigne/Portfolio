@@ -121,18 +121,16 @@ const estActif = (lien) =>
     </script>
 
     <style>
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
+      ..nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
-        background: rgba(255, 255, 255, 0.75);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-
-        border-bottom: 1px solid var(--bordure);
-      }
-
+  background: transparent;
+  border-bottom: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
       :root[data-theme="dark"] .nav {
         background: rgba(15, 23, 42, 0.75);
       }
