@@ -1,4 +1,3 @@
----
 
 import "../styles/global.css";
 import { profil } from "../data/site.js";
@@ -18,7 +17,6 @@ const onglets = [
 
 const estActif = (lien) =>
 lien === "/" ? ici === "/" : ici.startsWith(lien);
---------------------------------------------------
 
 <!doctype html>
 
@@ -43,7 +41,6 @@ lien === "/" ? ici === "/" : ici.startsWith(lien);
     document.documentElement.setAttribute("data-theme", theme);
   })();
 </script>
-```
 
   </head>
 
@@ -54,7 +51,6 @@ lien === "/" ? ici === "/" : ici.startsWith(lien);
           {profil.nom}<span>.</span>
         </a>
 
-```
     <nav>
       {onglets.map((o) => (
         <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>
@@ -284,7 +280,6 @@ lien === "/" ? ici === "/" : ici.startsWith(lien);
     color: var(--texte-doux);
   }
 </style>
-```
 
   </body>
 </html>
