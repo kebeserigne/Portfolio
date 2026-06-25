@@ -147,7 +147,7 @@ Enfin, j'ai piloté l'intégralité de la recette technique post-migration : val
   {
     titre: "Projet 5.01 — Data Mining & Modélisation Statistique : Prédiction de l'Attrition Client",
     annee: "S5",
-    competence: "Compétence 4 : Modéliser les données dans un cadre statistique (Spécialité EMS)",
+    competence: "Compétence 2 : Analyser statistiquement les données",
     description: `Développement d'un moteur d'analyse prédictive sous R pour anticiper le comportement de désabonnement (Churn) de 7 032 clients d'une entreprise de télécommunications à partir de données mixtes.
 
 J'ai nettoyé, factorisé et mis à l'échelle les données explicatives avant de confronter trois approches de Data Mining : k-NN (k plus proches voisins), LDA (Analyse Discriminante Linéaire avec sélection pas-à-pas Greedy Wilks) et Arbres de Décision (optimisés par post-élagage avec un CP de 0.0095 pour éviter le sur-apprentissage). 
