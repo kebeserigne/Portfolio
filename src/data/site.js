@@ -130,18 +130,66 @@ export const techCategories = [
 ];
 
 // ------------------------------------------------------------
-// PAGE "SAÉ" — à compléter (S5 et S6)
+// PAGE "PROJETS ACADÉMIQUES" (Anciennement SAÉ)
 // ------------------------------------------------------------
-export const saes = [
+export const projetsAcademiques = [
   {
-    titre: "SAÉ à compléter",
+    titre: "Projet 5.02 — Migration de données vers un environnement NoSQL",
     annee: "S5",
-    competence: "Compétence visée",
-    description:
-      "Décris ici ce que tu as concrètement réalisé : sujet, données, outils, résultat.",
-    image: "", // ex: "/saes/sae1.png"
+    competence: "Compétence 1 : Traiter des données à des fins décisionnelles",
+ description:
+    "Migration complète et sécurisée d'une base de données relationnelle PostgreSQL 
+	  (contenant l'historique du contentieux électoral du cabinet juridique JADE) 
+	  vers une base de données orientée graphe Neo4j. L'objectif était de lever les 
+	  limites du modèle relationnel et d'accélérer les requêtes analytiques complexes 
+	  (analyse de chaînes de réélections successives sur 20 ans, liens entre fraudes juridiques et écarts de voix).
+	  J'ai audité la base source, appliqué une stratégie 
+	  de nettoyage (exclusion de 55 lignes de votes aberrantes et gestion des données éparses)
+	  et modélisé un schéma cible optimisé composé de 8 labels de nœuds et de relations riches. 
+	  L'importation a été automatisée en Cypher (LOAD CSV) en exploitant une stratégie performante
+	  en 'Passe Unique' adossée à des contraintes d'unicité servant d'index. Enfin, j'ai piloté 
+	  l'intégralité de la recette technique post-migration : validation de la volumétrie à 100% 
+	  (plus de 115 000 nœuds et relations), contrôle strict du typage via des sommes de contrôle
+	  numériques globales (712M+ votants validés à l'unité près) et vérification de la fidélité 
+	  structurelle (jointures SQL vs chemins Cypher), confirmant un gain massif de lisibilité et de performance pour le cabinet.",vers une base de données orientée graphe Neo4j...`,
+    image: "/saes/sae502.png",
   },
-  // Duplique pour chaque SAÉ S5 et S6
+  {
+    titre: "Projet 5.01 — Data Mining & Modélisation Statistique : Prédiction de l'Attrition Client",
+    annee: "S5",
+    competence: "Compétence 4 : Modéliser les données dans un cadre statistique (Spécialité EMS)",
+    description: `Développement d'un moteur d'analyse prédictive sous R pour anticiper le comportement de désabonnement 
+	  (Churn) de 7 032 clients d'une entreprise de télécommunications à partir de données mixtes.
+	  J'ai nettoyé, factorisé et mis à l'échelle les données explicatives avant de confronter trois 
+	  approches de Data Mining : k-NN (k plus proches voisins), LDA (Analyse Discriminante Linéaire
+	  avec sélection pas-à-pas Greedy Wilks) et Arbres de Décision (optimisés par post-élagage avec
+*	  un CP de 0.0095 pour éviter le sur-apprentissage). Afin d'exploiter efficacement les 16 variables
+textuelles, j'ai réalisé une Analyse des Correspondances Multiples (ACM) et extrait les 6 premiers axes
+ factoriels (61.87% de l'inertie) pour les injecter comme prédicteurs numériques. Pour prouver la stabilité de ma démarche
+ , j'ai piloté une étude de ré-échantillonnage de Monte Carlo sur 500 simulations. Résultats : l'arbre optimal a isolé l'ancienneté (tenure)
+ comme le facteur de risque n°1. De plus, l'intégration des dimensions qualitatives de l'ACM a permis
+ de faire chuter le taux d'erreur global à 19.34% et de faire grimper la précision de détection des
+ clients sur le départ à 64.04%, validant un outil d'aide à la décision marketing hautement performant.`,
+    image: "/saes/sae501.png",
+  },
+  {
+    titre: "Projet R6.EMS.05 — Apprentissage Statistique pour l'IA",
+    annee: "S6",
+    competence: "Compétence 4 : Modéliser les données dans un cadre statistique (Spécialité EMS)",
+    description: `Mise en œuvre d'algorithmes d'apprentissage statistique supervisé sous R pour résoudre des problématiques
+	  industrielles complexes de classification binaire et de régression. Le premier volet concernait le développement
+	  d'un classifieur automatique de spams (4 601 e-mails, 57 variables continues text-mining). 
+	  *J'ai entraîné une régression logistique, identifié les prédicteurs sémantiques clés et conçu un estimateur
+	  
+	  de Bagging optimisé sur 100 et 1 000 échantillons Bootstrap pour stabiliser les prédictions, atteignant
+	  un taux d'erreur de 11,21 %. Le second volet portait sur la prédiction continue du taux de popularité
+	  de confiseries (85 types de bonbons, données mixtes). Traité sous l'angle de la régression, 
+	  j'ai construit des arbres de décision CART (rpart) et implémenté des forêts aléatoires de Breiman (1 000 arbres).
+	  Ce travail m'a permis d'isoler structurellement les leviers d'attractivité produits (alliances chocolat/caramel/cacahuète),
+	  de diagnostiquer finement les risques de sur-apprentissage (overfitting) via le partitionnement apprentissage/test, 
+	  et d'exploiter les scores d'importance des variables pour guider des choix décisionnels.`,
+    image: "/saes/sae_ia.png",
+  }
 ];
 
 // ------------------------------------------------------------
