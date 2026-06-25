@@ -3,25 +3,25 @@ import Layout from "../layouts/Layout.astro";
 import { projetsAcademiques } from "../data/site.js";
 ---
 
-<Layout titrePage="SAÉ — Portfolio">
+<Layout titrePage="Projets Académiques — Portfolio">
   <section>
     <div class="container">
-      <h1 class="section-titre reveal">SAÉ</h1>
+      <h1 class="section-titre reveal">Projets Académiques</h1>
       <p class="section-sous-titre reveal">
-        Mes Situations d'Apprentissage et d'Évaluation de BUT3 (S5 et S6),
-        reliées aux compétences du référentiel.
+        Mes projets académiques de BUT3 (S5 et S6),
+        reliés aux compétences du référentiel.
       </p>
       <div class="grille">
-        {saes.map((sae) => (
+        {projetsAcademiques.map((projet) => (
           <article class="carte reveal">
-            {sae.image && <div class="img-zone"><img src={sae.image} alt={sae.titre} /></div>}
+            {projet.image && <div class="img-zone"><img src={projet.image} alt={projet.titre} /></div>}
             <div class="corps">
               <div class="entete">
-                <span class="annee">{sae.annee}</span>
-                <span class="comp">{sae.competence}</span>
+                <span class="annee">{projet.annee}</span>
+                <span class="comp">{projet.competence}</span>
               </div>
-              <h3 class="titre">{sae.titre}</h3>
-              <p class="desc">{sae.description}</p>
+              <h3 class="titre">{projet.titre}</h3>
+              <p class="desc">{projet.description}</p>
             </div>
           </article>
         ))}
