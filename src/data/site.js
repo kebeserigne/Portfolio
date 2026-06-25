@@ -150,22 +150,21 @@ export const saes = [
 export const experiences = [
   {
     poste: "Programmeur Statisticien — Alternance",
-    structure: "LYSARC (Lymphoma Academic Research Organisation), Lyon",
-    periode: "2024 — 2026",
+    structure: "LYSARC (Pôle Biométrie, Département de Biostatistique), Lyon",
+    periode: "Septembre 2025 — Juillet 2026",
     description:
-      "Développement d'outils de visualisation et d'analyse statistique pour les essais cliniques en hématologie : suite de fonctions R pour les effets indésirables, outils de comparaison statistique et application Shiny de pharmacovigilance, sur l'essai OASIS II.",
-    techs: ["R", "Shiny", "SAS", "GLM Poisson"],
+      "Développement d'outils R pour la visualisation (sunburst, volcano plots, etc.) et l'analyse statistique (IRR, régression) des effets secondaires dans les essais cliniques. Conception, déploiement et documentation d'une application R Shiny interactive de pharmacovigilance, automatisant la production d'analyses reproductibles pour les équipes médicales et les comités de surveillance.",
+    techs: ["R", "Shiny", "ggplot2", "plotly", "SAS", "R Markdown", "Survminer", "Regréssion logistique (poisson, odds ratio)"],
   },
   {
-    poste: "Stage — Traitement de données pharmaceutiques",
-    structure: "CHU Grenoble, laboratoire TIMC",
-    periode: "2024",
+    poste: "Stage — Traitement de données en santé publique",
+    structure: "CHU Grenoble, Laboratoire TIMC (Équipe MESP)",
+    periode: "2024 (10 semaines)",
     description:
-      "Traitement de données d'interventions pharmaceutiques et développement d'un pipeline de traitement de données en R.",
-    techs: ["R", "Data cleaning"],
+      "Gestion de l'observatoire national Act-IP® portant sur les interventions pharmaceutiques. Nettoyage, harmonisation et intégration de 20 ans de données hétérogènes (hospitalières et officinales). Réalisation d'analyses descriptives et développement de deux tableaux de bord interactifs sous R Shiny pour rendre les données explorables par les chercheurs et cliniciens.",
+    techs: ["R", "Shiny", "ggplot2", "tidyverse", "R Markdown", "Excel", "Stata"],
   },
 ];
-
 // ------------------------------------------------------------
 // PAGE "PROJETS" (style image 6 : image + mots-clés)
 // ------------------------------------------------------------
