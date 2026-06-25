@@ -46,6 +46,7 @@ export const aProposSections = [
     items: [
       "Datavisualisation et design d'interfaces",
       "Statistiques appliquées à la santé",
+      " Mangas : Kingdom & Naturo & Classroom of Elite",
       // Ajoute / modifie tes vrais centres d'intérêt ici
     ],
   },
