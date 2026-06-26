@@ -525,3 +525,6 @@ width: 100%;
 justify-content: center;
 }
 }
+a:focus, a:focus-visible {
+  outline: none;
+}
