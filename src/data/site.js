@@ -137,9 +137,8 @@ export const competences = [
     ],
     amelioration: [
       "Storytelling data avancé",
-      "Déploiement d'applications en production (Docker, CI/CD)",
     ],
-    projets:    ["Application Shiny LYSARC", "Tableaux de bord CHU", "SAÉ 2.05 — STMicro"],
+    projets:    ["Application Shiny LYSARC", "Tableaux de bord CHU Grenoble", "SAÉ 2.05 — STMicro"],
     entreprise: ["Programmeur Statisticien chez LYSARC", "Stage CHU Grenoble"],
     techs:      ["Shiny", "R Markdown", "plotly", "ggiraph"],
   },
@@ -180,7 +179,7 @@ export const techCategories = [
 
   {
     nom:   "Langages & Analyse",
-    items: ["R", "Python", "SAS", "SQL"],
+    items: ["R", "Python", "SAS", "SQL", "Pack Office Microsoft 365" ],
   },
 
   {
@@ -209,7 +208,7 @@ export const techCategories = [
 
   {
     nom:   "Langues",
-    items: ["Français (natif)", "Anglais (B1)", "Wolof (natif)"],
+    items: ["Français (courant)", "Anglais (B1)", "Wolof (natif)"],
   },
 
 ];
