@@ -3,26 +3,35 @@ import Layout from "../layouts/Layout.astro";
 import { projetsAcademiques } from "../data/site.js";
 ---
 
-<Layout titrePage="Projets Académiques — Portfolio">
+<Layout titrePage="Projets académiques — Portfolio">
   <section>
     <div class="container">
-      <h1 class="section-titre reveal">Projets Académiques</h1>
+      <h1 class="section-titre reveal">Projets académiques</h1>
       <p class="section-sous-titre reveal">
-        Mes projets académiques de BUT3 (S5 et S6),
-        reliés aux compétences du référentiel.
+        Mes SAÉ de BUT3 (S5 et S6), reliées aux 4 compétences du référentiel national
+        BUT Science des Données, parcours EMS.
       </p>
+
       <div class="grille">
-        {projetsAcademiques.map((projet) => (
+        {projetsAcademiques.map((p) => (
           <article class="carte reveal">
-            {projet.image && <div class="img-zone"><img src={projet.image} alt={projet.titre} /></div>}
-            <div class="corps">
-              <div class="entete">
-                <span class="annee">{projet.annee}</span>
-                <span class="comp">{projet.competence}</span>
-              </div>
-              <h3 class="titre">{projet.titre}</h3>
-              <p class="desc">{projet.description}</p>
+
+            <div class="visuel">
+              {p.image
+                ? <img src={p.image} alt={p.titre} />
+                : <span class="emoji">{p.emoji}</span>
+              }
             </div>
+
+            <div class="corps">
+              <div class="meta">
+                <span class="annee">{p.annee}</span>
+                <span class="comp">{p.competence}</span>
+              </div>
+              <h3 class="titre">{p.titre}</h3>
+              <p class="desc">{p.description}</p>
+            </div>
+
           </article>
         ))}
       </div>
@@ -31,25 +40,83 @@ import { projetsAcademiques } from "../data/site.js";
 </Layout>
 
 <style>
-  .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
   .carte {
-    background: var(--bg-carte); border: 1px solid var(--bordure);
-    border-radius: var(--rayon); overflow: hidden;
+    background: var(--bg-carte);
+    border: 1px solid var(--bordure);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px var(--ombre);
     transition: transform var(--transition), border-color var(--transition);
   }
-  .carte:hover { transform: translateY(-4px); border-color: var(--ambre); }
-  .img-zone { height: 150px; background: var(--bg-alt); }
-  .img-zone img { width: 100%; height: 100%; object-fit: cover; }
-  .corps { padding: 1.5rem; }
-  .entete { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+  .carte:hover {
+    transform: translateY(-4px);
+    border-color: var(--menthe);
+  }
+
+  /* Zone visuelle : image ou émoji */
+  .visuel {
+    height: 130px;
+    background: linear-gradient(
+      135deg,
+      rgba(45, 212, 191, 0.1),
+      rgba(23, 37, 84, 0.08)
+    );
+    display: grid;
+    place-items: center;
+  }
+  .visuel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .emoji {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .corps { padding: 1.4rem; }
+
+  .meta {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+  }
   .annee {
-    font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem;
-    border-radius: 6px; background: var(--bleu); color: #0f1825;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    background: var(--bleu);
+    color: white;
   }
   .comp {
-    font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px;
-    background: rgba(245,166,35,0.18); color: var(--ambre-clair);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(45, 212, 191, 0.15);
+    color: #0f766e;
   }
-  .titre { color: var(--bleu); font-size: 1.05rem; margin-bottom: 0.6rem; }
-  .desc { color: var(--texte-doux); font-size: 0.92rem; }
+
+  .titre {
+    color: var(--bleu);
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    line-height: 1.4;
+  }
+  .desc {
+    color: var(--texte-doux);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
 </style>
