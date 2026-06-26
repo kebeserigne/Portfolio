@@ -10,7 +10,7 @@
 
 export const profil = {
   nom:      "Serigne KEBE",
-  titre:    "Étudiant BUT Science des Données — parcours EMS",
+  titre:    "Étudiant BUT Science des Données — parcours Exploration et Modélisation Statistique (EMS)",
   sousTitre: "Programmeur Statisticien · Futur ingénieur Data & IA",
   accroche:
     "J'aime transformer des données complexes en outils clairs et utiles. " +
