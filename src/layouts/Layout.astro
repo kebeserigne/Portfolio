@@ -35,6 +35,9 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
             <a href={o.lien} class={estActif(o.lien) ? "actif" : ""}>{o.nom}</a>
           ))}
         </nav>
+        <button class="theme-toggle" id="theme-toggle" title="Changer le thème" aria-label="Changer le thème">
+          🌙
+        </button>
       </div>
     </header>
 
@@ -99,5 +102,26 @@ const estActif = (lien) => (lien === "/" ? ici === "/" : ici.startsWith(lien));
       .footer-liens a:hover { color: var(--ambre); }
       .copyright { text-align: center; font-size: 0.8rem; color: var(--texte-doux); margin-top: 1.5rem; }
     </style>
+  <script>
+    // Applique le thème sauvegardé au chargement
+    const saved = localStorage.getItem("theme");
+    const btn   = document.getElementById("theme-toggle");
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      btn.textContent = theme === "dark" ? "☀️" : "🌙";
+      localStorage.setItem("theme", theme);
+    }
+
+    // Au chargement : thème sauvegardé OU préférence système
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    applyTheme(saved || (prefersDark ? "dark" : "light"));
+
+    // Au clic sur le bouton
+    btn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+  </script>
   </body>
 </html>
