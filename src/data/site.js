@@ -41,10 +41,10 @@ export const aProposSections = [
     titre: "Parcours académique",
     icone: "school",
     items: [
-      "BUT Science des Données, parcours EMS — IUT2 Grenoble (en cours)",
-      "Échange en datavisualisation — Université d'Économie et de Statistiques de Prague",
-      "Classe préparatoire MPCI (L1) — Grenoble",
-      "Bac Scientifique — Dakar",
+      "BUT Science des Données, parcours EMS — IUT2 Grenoble (en cours) 2023 - 2026",
+      "Échange en datavisualisation — Université d'Économie et de Statistiques de Prague 2025",
+      "Classe préparatoire MPCI (L1) — Unicersité Ahmadou Makhtar Mbow de Dakar 2022 - 2023",
+      "Bac Scientifique — Dakar 2019 - 2022 ",
     ],
   },
 
@@ -54,7 +54,7 @@ export const aProposSections = [
     items: [
       "Datavisualisation et design d'interfaces",
       "Statistiques appliquées à la santé",
-      "Mangas : Kingdom, Naruto, Classroom of the Elite",
+      "Mangas : Kingdom, Naruto, Classroom of the Elite", " Death Note",
     ],
   },
 
