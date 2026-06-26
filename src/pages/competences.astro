@@ -12,9 +12,8 @@ function etoiles(n) {
     <div class="container">
       <h1 class="section-titre reveal">Compétences</h1>
       <p class="section-sous-titre reveal">
-        Les 4 compétences du programme national BUT Science des Données (parcours
-        EMS). Pour chacune, mon niveau de maîtrise, mes axes de progression, et
-        les projets où je l'ai mise en œuvre.
+        Les 4 compétences officielles du BUT Science des Données (parcours EMS),
+        illustrées par mes projets concrets et mon expérience en alternance.
       </p>
 
       <div class="grille">
@@ -22,6 +21,7 @@ function etoiles(n) {
           const e = etoiles(c.niveau);
           return (
             <article class="carte reveal">
+
               <div class="entete">
                 <span class="num">{c.numero}</span>
                 <h3 class="titre">{c.titre}</h3>
@@ -35,29 +35,40 @@ function etoiles(n) {
               </div>
 
               <div class="rubrique">
-                <h4>Axes de progression</h4>
-                <ul>{c.amelioration.map((a) => <li>{a}</li>)}</ul>
+                <h4>Ce que j'ai réalisé concrètement</h4>
+                <ul>
+                  {c.preuves.map((p) => <li>{p}</li>)}
+                </ul>
               </div>
 
               <div class="rubrique">
                 <h4>Projets liés</h4>
-                <ul class="liens">{c.projets.map((p) => <li>{p}</li>)}</ul>
+                <ul class="liens">
+                  {c.projets.map((p) => <li>{p}</li>)}
+                </ul>
               </div>
 
               <div class="rubrique">
-                <h4>En entreprise</h4>
-                <ul>{c.entreprise.map((x) => <li>{x}</li>)}</ul>
+                <h4>Axes de progression</h4>
+                <ul>
+                  {c.amelioration.map((a) => <li>{a}</li>)}
+                </ul>
               </div>
 
               <div class="techs">
                 {c.techs.map((t) => <span class="tag">{t}</span>)}
               </div>
+
             </article>
           );
         })}
       </div>
 
+      <!-- Compétences techniques par catégories -->
       <h2 class="tech-titre reveal">Compétences techniques</h2>
+      <p class="section-sous-titre reveal">
+        Les outils et technologies que j'utilise au quotidien.
+      </p>
       <div class="tech-grille">
         {techCategories.map((cat) => (
           <div class="tech-carte reveal">
@@ -68,55 +79,157 @@ function etoiles(n) {
           </div>
         ))}
       </div>
+
     </div>
   </section>
 </Layout>
 
 <style>
-  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  /* ---- 4 compétences ---- */
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
   .carte {
-    background: var(--bg-carte); border: 1px solid var(--bordure);
-    border-radius: var(--rayon); padding: 1.6rem;
+    background: var(--bg-carte);
+    border: 1px solid var(--bordure);
+    border-radius: 16px;
+    padding: 1.6rem;
+    box-shadow: 0 4px 20px var(--ombre);
     transition: transform var(--transition), border-color var(--transition);
   }
-  .carte:hover { transform: translateY(-4px); border-color: var(--ambre); }
-  .entete { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.8rem; }
-  .num {
-    flex-shrink: 0; width: 40px; height: 40px; display: grid; place-items: center;
-    border-radius: 10px; background: linear-gradient(135deg, var(--bleu), var(--ambre));
-    color: #0f1825; font-weight: 800; font-size: 0.9rem;
+  .carte:hover {
+    transform: translateY(-4px);
+    border-color: var(--menthe);
   }
-  .titre { color: var(--bleu); font-size: 1.02rem; padding-top: 0.3rem; }
-  .desc { color: var(--texte-doux); font-size: 0.9rem; margin-bottom: 1rem; }
+
+  .entete {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .num {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--bleu), var(--menthe));
+    color: white;
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+  .titre {
+    color: var(--bleu);
+    font-size: 1rem;
+    padding-top: 0.3rem;
+    line-height: 1.3;
+  }
+
+  .desc {
+    color: var(--texte-doux);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
   .etoiles { margin-bottom: 1.2rem; }
+
+  /* Rubriques internes à chaque carte */
   .rubrique { margin-bottom: 1rem; }
   .rubrique h4 {
-    color: var(--ambre); font-size: 0.82rem; text-transform: uppercase;
-    letter-spacing: 0.5px; margin-bottom: 0.4rem; font-weight: 700;
+    color: var(--menthe);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
   }
-  .rubrique ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .rubrique ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
   .rubrique li {
-    font-size: 0.86rem; padding-left: 1.1rem; position: relative; color: var(--texte-doux);
+    font-size: 0.85rem;
+    padding-left: 1.1rem;
+    position: relative;
+    color: var(--texte-doux);
+    line-height: 1.5;
   }
-  .rubrique li::before { content: "•"; position: absolute; left: 0.2rem; color: var(--bleu); }
-  .rubrique .liens li { color: var(--bleu-clair); }
-  .techs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--bordure); }
-  .tag {
-    font-size: 0.76rem; padding: 0.25rem 0.7rem; border-radius: 999px;
-    background: rgba(245,166,35,0.15); color: var(--ambre-clair); font-weight: 600;
+  .rubrique li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--bleu-clair);
   }
-  .tech-titre { color: var(--bleu); font-size: 1.5rem; margin: 3.5rem 0 1.5rem; }
-  .tech-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .rubrique .liens li { color: var(--bleu-clair); font-weight: 500; }
+
+  .techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bordure);
+  }
+
+  /* ---- Compétences techniques ---- */
+  .tech-titre {
+    color: var(--bleu);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin-bottom: 0.5rem;
+  }
+  .tech-titre::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 4px;
+    background: var(--menthe);
+    border-radius: 999px;
+    margin-top: 0.6rem;
+  }
+  .tech-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
   .tech-carte {
-    background: var(--bg-carte); border: 1px solid var(--bordure);
-    border-radius: var(--rayon); padding: 1.4rem;
+    background: var(--bg-carte);
+    border: 1px solid var(--bordure);
+    border-radius: 16px;
+    padding: 1.4rem;
+    box-shadow: 0 4px 20px var(--ombre);
   }
-  .tech-carte h3 { color: var(--ambre); font-size: 1rem; margin-bottom: 1rem; }
-  .tech-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tech-carte h3 {
+    color: var(--menthe);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--bordure);
+  }
+  .tech-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
   .tech-tag {
-    font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 8px;
-    background: var(--bg-alt); border: 1px solid var(--bordure);
-    transition: border-color var(--transition);
+    font-size: 0.85rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(45, 212, 191, 0.08);
+    border: 1px solid var(--bordure);
+    color: var(--texte);
+    transition: border-color var(--transition), color var(--transition);
   }
-  .tech-tag:hover { border-color: var(--bleu); }
+  .tech-tag:hover {
+    border-color: var(--menthe);
+    color: var(--menthe);
+  }
 </style>
